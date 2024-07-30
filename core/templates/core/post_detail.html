@@ -1,0 +1,32 @@
+{% extends 'core/core.html' %}
+
+{% block content %}
+    <div class="post_container">
+        <div>
+            <h2 id="title">{{ post_detail.title }}</h2>
+            <p id="text">{{ post_detail.author }} | {{ post_detail.posted_on }}</p>
+            {% if post_detail.image %}
+                <img src="{{ post_detail.image.url }}" alt="{{ post_detail.title }}" class="post-image">
+            {% endif %}
+            <p id="content">{{ post_detail.content | safe }}</p>
+        </div>
+        
+        <div class="comment_section">
+            <h2>Comments</h2>
+            <ul>
+                {% for comment in comments %}
+                    <li>{{ comment.name }} ({{ comment.email }}) - {{ comment.body }}</li> <hr>
+                {% empty %}
+                    <li>No comments yet.</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Leave a comment</h2>
+            <form method="post" action="{% url 'add_comment' post_detail.slug %}">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit">Add comment</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+Django==5.0.2
+
+django-summernote==0.8.20.0
+
+Kivy==2.3.0
+
+pillow==10.4.0
+
+mysqlclient==2.2.4

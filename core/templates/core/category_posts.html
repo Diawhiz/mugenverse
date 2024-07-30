@@ -1,0 +1,31 @@
+{% extends 'core/core.html' %}
+
+{% block content %}
+    <div class="blog-post-container">
+        {% for post in category_view %}
+            <div class="blog-card">
+                <a href="{% url 'post_detail' post.slug %}">
+                    <img src="{{ post.image.url }}" alt="Blog Post Image">
+                    <div class="blog-card-content">
+                        <h2 class="blog-card-title">{{ post.title }}</h2>
+                        <div class="blog-card-meta">
+                            <span>{{ post.author }}</span>
+                            <span>{{ post.posted_on }}</span>
+                        </div>
+                        <p class="blog-card-excerpt">{{ post.snipet| safe }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="paginator" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a class="paginator" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %} 
+    {% endif %}
+{% endblock %}
