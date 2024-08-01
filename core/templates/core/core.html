@@ -28,6 +28,12 @@
                 {% for category in categories %}
                     <li class="navbar-item"><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
                 {% endfor %}
+                <li class="navbar-item">
+                    <form action="{% url 'search_results' %}" method="post">
+                        {% csrf_token %}
+                        <input type="search" name="q" id="" placeholder="Search...">
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>

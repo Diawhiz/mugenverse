@@ -76,3 +76,28 @@ class CategoryView(generic.ListView):
         context['category'] = category
         context['recent_posts'] = recent_posts
         return context
+    
+#The code below is for search field
+class SearchResultsView(generic.ListView):
+    model = Post
+    template_name = 'core/search_results.html'
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if search_query:
+            return Post.objects.filter(title__icontains=query)
+        return Post.objects.all()
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(*kwargs)
+    #     csrf_token = get_token(self.request)
+    #     context['csrf_token'] = csrf_token
+    #     return context
+    
+    # def post(self, request, *args, **kwargs):
+    #     csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+    #     query = self.request.POST.get('q')
+    #     results = Post.objects.filter(title__icontains=query)
+    #     #return super().post(request, *args, **kwargs)
+    #     return render(request, 'core/search_results.html', {'results': results})
