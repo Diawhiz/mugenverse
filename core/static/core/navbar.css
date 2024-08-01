@@ -43,6 +43,6 @@
 #search {
     color: #faebd7;
     border: 1px solid #faebd7;
-    border-radius: 5px;
-
+    border-radius: 10px;
+    background: 0;
 }
