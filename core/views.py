@@ -85,19 +85,6 @@ class SearchResultsView(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        if search_query:
+        if query:
             return Post.objects.filter(title__icontains=query)
         return Post.objects.all()
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(*kwargs)
-    #     csrf_token = get_token(self.request)
-    #     context['csrf_token'] = csrf_token
-    #     return context
-    
-    # def post(self, request, *args, **kwargs):
-    #     csrf_token = self.request.POST.get('csrfmiddlewaretoken')
-    #     query = self.request.POST.get('q')
-    #     results = Post.objects.filter(title__icontains=query)
-    #     #return super().post(request, *args, **kwargs)
-    #     return render(request, 'core/search_results.html', {'results': results})

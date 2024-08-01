@@ -22,6 +22,7 @@
     display: flex;
     padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 .navbar-item {
@@ -37,4 +38,11 @@
 
 .navbar-link:hover {
     color: #faebd7;
+}
+
+#search {
+    color: #faebd7;
+    border: 1px solid #faebd7;
+    border-radius: 5px;
+
 }
