@@ -81,9 +81,8 @@ class CategoryView(generic.ListView):
 def search(request):
     query = request.GET.get('q')
     results = []
-    query = query.encode('unicode_escape').decode('utf-8')
 
     if query:
-        results = SearchQuerySet().models(Post).filter(content=query)
+        results = SearchQuerySet()
 
     return render(request, 'core/search_results.html', {'results': results})

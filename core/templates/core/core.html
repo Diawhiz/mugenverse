@@ -31,7 +31,7 @@
                 <li class="navbar-item">
                     <form action="{% url 'search_results' %}" method="get">
                         {% csrf_token %}
-                        <input type="search" name="q" value="{{ request.GET.q }}" id="search" placeholder="Search...">
+                        <input type="search" name="q" value="{{ request.GET.get.q }}" id="search" placeholder="Search...">
                     </form>
                 </li>
             </ul>

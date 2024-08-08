@@ -21,9 +21,6 @@ body{
   box-shadow: 2px 2px 1px 1px #333;
   width: 25%; 
   margin: 20px 10px 10px 10px;
-  position: sticky;
-  top: 80px;
-  height: 78vh;
 }
 
 .sidebar h3 {
