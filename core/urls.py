@@ -6,5 +6,5 @@ urlpatterns = [
     path('post/<slug:slug>/', views.PostDetailView.as_view(), name='post_detail'),
     path('post/<slug:slug>/comment/', views.add_comment, name='add_comment'),
     path('category/<slug:category_slug>/', views.CategoryView.as_view(), name='category_posts'),
-    path('search/', views.SearchResultsView.as_view(), name='search_results'),
+    path('search/', views.search, name='search_results'),
 ]

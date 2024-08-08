@@ -29,9 +29,9 @@
                     <li class="navbar-item"><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
                 {% endfor %}
                 <li class="navbar-item">
-                    <form action="{% url 'search_results' %}" method="post">
+                    <form action="{% url 'search_results' %}" method="get">
                         {% csrf_token %}
-                        <input type="search" name="q" id="search" placeholder="Search...">
+                        <input type="search" name="q" value="{{ request.GET.q }}" id="search" placeholder="Search...">
                     </form>
                 </li>
             </ul>

@@ -7,3 +7,5 @@ Kivy==2.3.0
 pillow==10.4.0
 
 mysqlclient==2.2.4
+
+django-haystack==3.3.0

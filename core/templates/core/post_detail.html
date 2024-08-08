@@ -6,7 +6,9 @@
             <h2 id="title">{{ post_detail.title }}</h2>
             <p id="text">{{ post_detail.author }} | {{ post_detail.posted_on }}</p>
             {% if post_detail.image %}
-                <img src="{{ post_detail.image.url }}" alt="{{ post_detail.title }}" class="post-image">
+                <div class="post-image-class">
+                    <img src="{{ post_detail.image.url }}" alt="{{ post_detail.title }}" class="post-image">
+                </div>                
             {% endif %}
             <p id="content">{{ post_detail.content | safe }}</p>
         </div>
@@ -15,7 +17,11 @@
             <h2>Comments</h2>
             <ul>
                 {% for comment in comments %}
-                    <li>{{ comment.name }} ({{ comment.email }}) - {{ comment.body }}</li> <hr>
+                    <div class="userdetails">
+                        <img src="dummyimage.png" alt="userimg">
+                        <li>{{ comment.name }} ({{ comment.email }}):</li>
+                    </div> 
+                    <li>{{ comment.body }}</li> <hr>
                 {% empty %}
                     <li>No comments yet.</li>
                 {% endfor %}
