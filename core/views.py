@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Category
 from django.views import generic
 from .forms import CommentForm
-from haystack.query import SearchQuerySet
 
 # Create your views here.
 class HomeView(generic.ListView):
@@ -78,11 +77,21 @@ class CategoryView(generic.ListView):
         return context
     
 #The code below is for search field
-def search(request):
-    query = request.GET.get('q')
-    results = []
+class SearchView(generic.ListView):
+    model = Post
+    template_name = 'core/search_results.html'
 
-    if query:
-        results = SearchQuerySet()
-
-    return render(request, 'core/search_results.html', {'results': results})
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.filter(QuerySet(title_icontains=query))
+        return object_list
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categor_slug = self.kwargs['category_slug']
+        category = Category.objects.get(slug=categor_slug)
+        recent_posts = Post.objects.all().order_by('-posted_on')[:5]
+        context['categories'] = Category.objects.all()
+        context['category'] = category
+        context['recent_posts'] = recent_posts
+        return context

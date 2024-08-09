@@ -18,8 +18,8 @@
             <ul>
                 {% for comment in comments %}
                     <div class="userdetails">
-                        <img src="dummyimage.png" alt="userimg">
-                        <li>{{ comment.name }} ({{ comment.email }}):</li>
+                        <img src="{{ post_detail.image.url }}" alt="userimg">
+                        <li>{{ comment.name }}:</li>
                     </div> 
                     <li>{{ comment.body }}</li> <hr>
                 {% empty %}

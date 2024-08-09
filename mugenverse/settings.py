@@ -39,17 +39,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'django_summernote',
-    'haystack',
 ]
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
-    },
-}
-
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,38 +122,6 @@ STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-#Disable summernote formatting tag from page
-SUMMERNOTE_CONFIG = {
-    'summernote': {
-        'airMode': False,
-        'height': 300,
-        'toolbar': [
-            ['style', ['style']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']],
-        ],
-    },
-    'lang': 'en-US',
-
-    # You can add custom css/js for SummernoteWidget.
-    'css': (
-    ),
-    'js': (
-        '/core/summernote_custom.js',
-
-    ),
-
-    'plugins': [
-        'summer_note_uploads',
-    ]
-}
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
