@@ -19,9 +19,8 @@
                 {% for comment in comments %}
                     <div class="userdetails">
                         <img src="{{ post_detail.image.url }}" alt="userimg">
-                        <li>{{ comment.name }}:</li>
-                    </div> 
-                    <li>{{ comment.body }}</li> <hr>
+                        <li>{{ comment.name }}: <br>{{ comment.body }}</li>
+                    </div> <hr>
                 {% empty %}
                     <li>No comments yet.</li>
                 {% endfor %}

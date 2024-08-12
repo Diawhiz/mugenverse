@@ -78,6 +78,9 @@ WSGI_APPLICATION = 'mugenverse.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
+       'OPTIONS': {
+            'charset': 'utf8mb4'
+        },
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mugenverse',
         'USER': 'diawhiz',

@@ -1,5 +1,5 @@
 from typing import Any
-from django.db.models.query import QuerySet
+from django.db.models.query import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Category
 from django.views import generic
@@ -82,16 +82,15 @@ class SearchView(generic.ListView):
     template_name = 'core/search_results.html'
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Post.objects.filter(QuerySet(title_icontains=query))
-        return object_list
+        q = self.request.GET.get('q')
+        if q:
+            return Post.objects.filter(Q(title__icontains=q))
+        else:
+            return Post.objects.all().encode('utf-8')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        categor_slug = self.kwargs['category_slug']
-        category = Category.objects.get(slug=categor_slug)
         recent_posts = Post.objects.all().order_by('-posted_on')[:5]
         context['categories'] = Category.objects.all()
-        context['category'] = category
         context['recent_posts'] = recent_posts
         return context
