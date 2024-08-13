@@ -29,6 +29,10 @@
     margin-left: 20px;
 }
 
+.navbar-item:first-child {
+    margin-left: auto;
+}
+
 .navbar-link {
     color: #fff;
     text-decoration: none;
@@ -46,4 +50,44 @@
     border-radius: 10px;
     background: 0;
     outline: 0;
+}
+
+/* Navigation bar responsiveness styling */
+.navbar-menu-sidebar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: #333;
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.navbar-menu-sidebar .navbar-item {
+    width: 100%;
+}
+
+.navbar-menu-sidebar .navbar-link {
+    width: 100%;
+}
+
+.sidebar-icons {
+    width: 25px;
+    height: auto;
+}
+
+.navbar img {
+    color: #fff;
+}
+
+#showsidebar {
+    display: none;
 }
