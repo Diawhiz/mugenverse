@@ -27,6 +27,11 @@
 	color: #333;
 }
 
+.blog-card-meta {
+	font-size: 1.2em;
+	color: #666;
+}
+
 .paginator {
 	text-decoration: none;
 	color: #fff;

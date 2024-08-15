@@ -50,12 +50,13 @@
     border-radius: 10px;
     background: 0;
     outline: 0;
+    height: 35px;
 }
 
 /* Navigation bar responsiveness styling */
 .navbar-menu-sidebar {
     list-style: none;
-    padding: 0;
+    padding: 10px;
     margin: 0;
     top: 0;
     right: 0;
@@ -64,14 +65,14 @@
     z-index: 999;
     background-color: #333;
     backdrop-filter: blur(10px);
-    box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+    box-shadow: -5px 0 5px rgba(0,0,0,0.1);
     display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
-.navbar-menu-sidebar .navbar-item {
+.navbar-menu-sidebar li {
     width: 100%;
 }
 
@@ -84,6 +85,14 @@
     height: auto;
 }
 
+.navbar img {
+    color: #fff;
+}
+
 #showsidebar {
+    display: none;
+}
+
+#disablesidebar {
     display: none;
 }
