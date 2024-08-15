@@ -28,21 +28,21 @@
                     </form>
                 </li>
             </ul>
-            <img onclick="showsidebar()" src="{% static 'images/square-minus.svg' %}" alt="" class="sidebar-icons"id="showsidebar">
+            <img onclick="showsidebar()" src="{% static 'images/square-minus.svg' %}" alt="" class="sidebar-icons" id="showsidebar">
+            <img onclick="hidesidebar()" src="{% static 'images/x.svg' %}" alt="" class="sidebar-icons" id="disablesidebar">
         </div>
 
         <div>
             {% comment %} navigation sidebar {% endcomment %}
             <ul class="navbar-menu-sidebar">
-                 <li class="navbar-item"><img onclick="hidesidebar()" src="{% static 'images/x.svg' %}" alt="" class="sidebar-icons"></li>
-                <li class="navbar-item"><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
+                <li><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
                 {% for category in categories %}
-                    <li class="navbar-item"><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
+                    <li><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
                 {% endfor %}
-                <li class="navbar-item">
+                <li>
                     <form action="{% url 'search_results' %}" method="get">
                         {% csrf_token %}
-                        <input type="search" name="q" value="{{ request.GET.get.q }}" id="search" placeholder="Search...">
+                        <input type="search" name="q" value="{{ q }}" id="search" placeholder="Search...">
                     </form>
                 </li>
             </ul>
@@ -71,14 +71,22 @@
     </footer> 
 
     <script>
+        const showtoggle = document.getElementById('showsidebar');
+        const disabletoggle = document.getElementById('disablesidebar');
+
+
         function showsidebar() {
             const sidebar = document.querySelector('.navbar-menu-sidebar');
             sidebar.style.display = 'flex';
+            disabletoggle.style.display = 'flex';
+            showtoggle.style.display = 'none';
         }
 
         function hidesidebar() {
             const sidebar = document.querySelector('.navbar-menu-sidebar');
             sidebar.style.display = 'none';
+            showtoggle.style.display = 'flex';
+            disabletoggle.style.display = 'none';
 
         }
     </script>

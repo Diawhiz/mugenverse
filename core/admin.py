@@ -1,11 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from django_summernote.admin import SummernoteModelAdmin
+# from django_summernote.admin import SummernoteModelAdmin
+from froala_editor.fields import FroalaField
 from .models import Post, Comment, Category
 
-class PostAdmin(SummernoteModelAdmin):
-    summernote_fields = ('content',)
+class PostAdmin(admin.ModelAdmin):
+    FroalaField = ('content',)
     list_display = ('title', 'slug', 'status', 'posted_on')
     list_filter = ('status', 'category')
     search_fields = ['title']
