@@ -5,3 +5,7 @@ django-froala-editor==4.2.1
 pillow==10.4.0
 
 mysqlclient==2.2.4
+
+django-simple-bulma==2.6.0
+
+ffmpeg==1.4

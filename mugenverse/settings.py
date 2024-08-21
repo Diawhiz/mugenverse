@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'froala_editor',
+    'django_simple_bulma',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,15 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core/static'), ]
 STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_FINDERS = [
+      # First add the two default Finders, since this will overwrite the default.
+      'django.contrib.staticfiles.finders.FileSystemFinder',
+      'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+      # Now add our custom SimpleBulma one.
+      'django_simple_bulma.finders.SimpleBulmaFinder',
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
