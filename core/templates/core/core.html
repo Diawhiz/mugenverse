@@ -12,10 +12,11 @@
     {% font_awesome %}
 </head>
 <body>
+    {% comment %} Menu starts {% endcomment %}
     <nav class="navbar">
         <div class="navbar-brand">
             <div class="navbar-items">
-                <img src="{% static 'images\square-minus.svg' %}" alt="">
+                <img src="{% static 'images\404-2.png' %}" alt="logo" width="24px" height="auto">
             </div>
             <div class="navbar-burger">
                 <span></span>
@@ -25,9 +26,9 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-start">
-                <div class="navbar-item">
+                <a href="{% url 'home' %}" class="navbar-item">
                     <small><strong>MugenVerse</strong></small>
-                </div>
+                </a>
             </div>
             <div class="navbar-end">
                 <div class="navbar-item is-hoverable">
@@ -43,32 +44,35 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="main-content">
-            {% block content %}
+    {% comment %} Menu ends {% endcomment %}
 
-            {% endblock %}
+    {% comment %} sidebar and main content column {% endcomment %}
+    <section class="section">
+        <div class="columns">
+            <div class="column">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+            <div class="column is-one-quarter">
+                <aside class="menu">
+                    <!-- sidebar content here -->
+                    <h3>Recent Posts</h3>
+                    <ul class="menu-list">
+                        {% for post in recent_posts %}
+                            <li><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></li> <hr>
+                        {% endfor %}
+                    </ul>
+                    {% comment %} <img src="{{ post_detail.image.url }}" alt="Blog Post Image"> - Ads image{% endcomment %}
+                </aside>
+            </div>
         </div>
-        <div class="sidebar">
-            <!-- sidebar content here -->
-            <h3>Recent Posts</h3>
-            <ul>
-                {% for post in recent_posts %}
-                    <li><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></li> <hr>
-                {% endfor %}
-            </ul>
-            {% comment %} <img src="{{ post_detail.image.url }}" alt="Blog Post Image"> - Ads image{% endcomment %}
+    </section>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p class="copyright">&copy; 2024 MugenVerse. All rights reserved.</p>
         </div>
-    </div>
-
-    <footer class="footer-section">
-        <p class="copyright">&copy; 2024 MugenVerse. All rights reserved.</p>
-    </footer> 
-
-    <script src="{% static 'js/bulma.min.js' %}"></script>
-
-    <script>
-        
-    </script>
+    </footer>
 </body>
 </html>

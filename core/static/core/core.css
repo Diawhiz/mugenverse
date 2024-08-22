@@ -4,3 +4,12 @@
     --background-color: #efefef;
     --text-color: #444444;
 }
+
+/* .thumnails{
+      height: 100% !important;
+      
+} */
+
+.card{
+    height: 100% !important;
+}
