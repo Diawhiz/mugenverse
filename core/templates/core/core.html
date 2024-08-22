@@ -6,44 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block title %}{% endblock title %} MugenVerse</title>
 
+    <link rel="stylesheet" href="{% static 'core/core.css' %}">
     {% load django_simple_bulma %}
     {% bulma %}
     {% font_awesome %}
 </head>
 <body>
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="{% url 'home' %}" class="navbar-brand">MugenVerse</a>
-            <ul class="navbar-menu">
-                <li class="navbar-item"><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
-                {% for category in categories %}
-                    <li class="navbar-item"><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
-                {% endfor %}
-                <li class="navbar-item">
+        <div class="navbar-brand">
+            <div class="navbar-items">
+                <img src="{% static 'images\square-minus.svg' %}" alt="">
+            </div>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <small><strong>MugenVerse</strong></small>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item is-hoverable">
+                    <a href="{% url 'home' %}" class="navbar-item">Home</a>
+                    {% for category in categories %}
+                        <a href="{% url 'category_posts' category.slug %}" class="navbar-item">{{category.name}}</a>
+                    {% endfor %}
                     <form action="{% url 'search_results' %}" method="get">
                         {% csrf_token %}
                         <input type="search" name="q" value="{{ request.GET.get.q }}" id="search" placeholder="Search...">
                     </form>
-                </li>
-            </ul>
-            <img onclick="showsidebar()" src="{% static 'images/square-minus.svg' %}" alt="" class="sidebar-icons" id="showsidebar">
-            <img onclick="hidesidebar()" src="{% static 'images/x.svg' %}" alt="" class="sidebar-icons" id="disablesidebar">
-        </div>
-
-        <div>
-            {% comment %} navigation sidebar {% endcomment %}
-            <ul class="navbar-menu-sidebar">
-                <li><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
-                {% for category in categories %}
-                    <li><a href="{% url 'category_posts' category.slug %}" class="navbar-link">{{category.name}}</a></li>
-                {% endfor %}
-                <li>
-                    <form action="{% url 'search_results' %}" method="get">
-                        {% csrf_token %}
-                        <input type="search" name="q" value="{{ q }}" id="search" placeholder="Search...">
-                    </form>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="container">
@@ -71,24 +68,7 @@
     <script src="{% static 'js/bulma.min.js' %}"></script>
 
     <script>
-        const showtoggle = document.getElementById('showsidebar');
-        const disabletoggle = document.getElementById('disablesidebar');
-
-
-        function showsidebar() {
-            const sidebar = document.querySelector('.navbar-menu-sidebar');
-            sidebar.style.display = 'flex';
-            disabletoggle.style.display = 'flex';
-            showtoggle.style.display = 'none';
-        }
-
-        function hidesidebar() {
-            const sidebar = document.querySelector('.navbar-menu-sidebar');
-            sidebar.style.display = 'none';
-            showtoggle.style.display = 'flex';
-            disabletoggle.style.display = 'none';
-
-        }
+        
     </script>
 </body>
 </html>
