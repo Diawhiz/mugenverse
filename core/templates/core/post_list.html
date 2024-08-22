@@ -31,13 +31,17 @@
         {% endfor %}
     </div>
 
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a class="paginator" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+    {% comment %} pagination code format {% endcomment %}
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
 
-        {% if page_obj.has_next %}
-            <a class="paginator" href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %} 
-    {% endif %}
+            {% if page_obj.has_next %}
+                <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %} 
+        {% endif %}
+    </nav>
+                
 {% endblock %}

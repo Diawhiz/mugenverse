@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en-gb">
+<html lang="en-gb" class="dark-theme">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +13,10 @@
 </head>
 <body>
     {% comment %} Menu starts {% endcomment %}
-    <nav class="navbar">
+    <nav class="navbar is-success">
         <div class="navbar-brand">
             <div class="navbar-items">
-                <img src="{% static 'images\404-2.png' %}" alt="logo" width="24px" height="auto">
+                <img src="{% static 'images\cropped-cropped-TMM-Logo-World-1.png' %}" alt="logo" width="24px" height="auto">
             </div>
             <div class="navbar-burger">
                 <span></span>
@@ -38,7 +38,7 @@
                     {% endfor %}
                     <form action="{% url 'search_results' %}" method="get">
                         {% csrf_token %}
-                        <input type="search" name="q" value="{{ request.GET.get.q }}" id="search" placeholder="Search...">
+                        <input class="input" type="search" name="q" value="{{ request.GET.get.q }}" id="search" placeholder="Search...">
                     </form>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 {% endblock %}
             </div>
             <div class="column is-one-quarter">
-                <aside class="menu">
+                <aside class="menu is-success">
                     <!-- sidebar content here -->
                     <h3>Recent Posts</h3>
                     <ul class="menu-list">
@@ -74,5 +74,7 @@
             <p class="copyright">&copy; 2024 MugenVerse. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="{% static 'script/script.js' %}"></script>
 </body>
 </html>

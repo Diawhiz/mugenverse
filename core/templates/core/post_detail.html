@@ -1,24 +1,27 @@
 {% extends 'core/core.html' %}
 
 {% block content %}
-    <div class="post_container">
-        <div>
-            <h2 id="title">{{ post_detail.title }}</h2>
-            <p id="text">{{ post_detail.author }} | {{ post_detail.posted_on }}</p>
+    <div class="container">
+        <div class="content is-medium">
+            <h2>{{ post_detail.title }}</h2>
+            <p>{{ post_detail.author }} | {{ post_detail.posted_on }}</p>
             {% if post_detail.image %}
-                <div class="post-image-class">
-                    <img src="{{ post_detail.image.url }}" alt="{{ post_detail.title }}" class="post-image">
-                </div>                
+                <figure>
+                    <img class="" src="{{ post_detail.image.url }}" alt="{{ post_detail.title }}">
+                    <figcaption>{{ post_detail.title }}</figcaption>
+                </figure>                
             {% endif %}
             <p id="content">{{ post_detail.content | safe }}</p>
         </div>
         
-        <div class="comment_section">
+        <div class="content">
             <h2>Comments</h2>
             <ul>
                 {% for comment in comments %}
-                    <div class="userdetails">
-                        <img src="{{ post_detail.image.url }}" alt="userimg">
+                    <div class="comment">
+                        <figure class="image is-32x32">
+                            <img class="is-rounded" src="{{ post_detail.image.url }}" alt="userimg">
+                        </figure>
                         <li>{{ comment.name }}: <br>{{ comment.body }}</li>
                     </div> <hr>
                 {% empty %}
