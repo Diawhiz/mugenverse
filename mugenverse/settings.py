@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'froala_editor',
     'django_simple_bulma',
+    'compressor',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +125,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core/static'), ]
 STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
-
 STATICFILES_FINDERS = [
       # First add the two default Finders, since this will overwrite the default.
       'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -131,18 +132,37 @@ STATICFILES_FINDERS = [
 
       # Now add our custom SimpleBulma one.
       'django_simple_bulma.finders.SimpleBulmaFinder',
+      'compressor.finders.CompressorFinder',
     ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# BULMA_SETTINGS = {
-#   "custom_scss": [
-#     "css/base/base.scss",                  # This is okay
-#     "mugenverse/static/css/base/base.scss",    # This also is okay
-#   ],
-# }
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+BULMA_SETTINGS = {
+    "custom_scss": [
+    "core/core.scss",                  # This is okay
+    "mugenverse/static/core/core.scss",    # This also is okay
+    ],
+    "extensions": [
+    "bulma-collapsible",
+    "bulma-calendar",
+    ],
+    "variables": {
+    "primary": "#000000",
+    "size-1": "6rem",
+    },
+    "alt_variables": {
+    "primary": "#fff",
+    "scheme-main": "#000",
+    },
+    "output_style": "compressed",
+    "fontawesome_token": "e761a01be3",
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

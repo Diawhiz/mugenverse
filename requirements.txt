@@ -8,4 +8,16 @@ mysqlclient==2.2.4
 
 django-simple-bulma==2.6.0
 
+django-widget-tweaks==1.5.0
+
 ffmpeg==1.4
+
+django-appconf==1.0.6 
+
+django-compressor==4.5.1 
+
+django-libsass==0.9 
+
+rcssmin==1.1.2 
+
+rjsmin==1.2.2
